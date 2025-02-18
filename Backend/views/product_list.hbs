@@ -1,0 +1,84 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Display Page</title>
+    <style>
+      /* General Styles */ body { font-family: 'Segoe UI', Tahoma, Geneva,
+      Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0;
+      color: #333; line-height: 1.6; } /* Header Styles */ header {
+      background-color: #6200ea; color: white; text-align: center; padding:
+      1.5em 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); } header h1 { margin:
+      0; font-size: 2.5em; font-weight: 600; } header .cart-info { font-size:
+      1.2em; margin-bottom: 10px; } header form { margin-top: 15px; } header
+      input { padding: 10px; font-size: 1em; width: 250px; border: 1px solid
+      #ccc; border-radius: 5px; } header button, header a { padding: 10px 15px;
+      font-size: 1em; background-color: #6200ea; color: white; border: none;
+      border-radius: 5px; cursor: pointer; text-decoration: none; display:
+      inline-block; } header button:hover, header a:hover { background-color:
+      #3700b3; } /* Main Content Styles */ main { padding: 2em; max-width:
+      1200px; margin: 0 auto; } /* Product Grid Styles */ section { display:
+      grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:
+      25px; justify-content: center; } .product-card { background-color: white;
+      border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 8px
+      rgba(0, 0, 0, 0.1); padding: 25px; text-align: left; transition: transform
+      0.3s ease, box-shadow 0.3s ease; } .product-card:hover { transform:
+      translateY(-10px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
+      .product-card h2 { color: #6200ea; font-size: 1.8em; margin-bottom: 15px;
+      font-weight: 600; } .product-card p { margin: 0.75em 0; font-size: 1.1em;
+      color: #555; } .product-card strong { color: #333; font-weight: 600; } /*
+      Image Styles */ .product-card img { width: 100%; height: 200px;
+      object-fit: cover; border-radius: 10px; margin-bottom: 15px; } /* Button
+      Styles */ .product-card button { background-color: #6200ea; color: white;
+      border: none; padding: 10px 20px; border-radius: 5px; font-size: 1em;
+      cursor: pointer; transition: background-color 0.3s ease; margin-right:
+      10px; } .product-card button:hover { background-color: #3700b3; }
+      .product-card .delete-button { background-color: #ff1744; } .product-card
+      .delete-button:hover { background-color: #d50000; } /* Flex Container for
+      Buttons */ .button-container { display: flex; gap: 10px; margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="cart-info">
+        <h3>Cart Items: {{cartItems}}</h3>
+      </div>
+      <h1>Product Display Page</h1>
+      <form action="/product/product_list" method="GET">
+        <input type="text" placeholder="Search products" name="Search" />
+        <button type="submit">Search</button>
+        <a href="http://localhost:3000/product/add_product">Add Product</a>
+      </form>
+    </header>
+
+    <main>
+      <section>
+        {{#each products}}
+          <div class="product-card">
+            <!-- Image Section -->
+            <img src="{{image}}" alt="{{name}}" />
+
+            <h2>Product Details</h2>
+            <p><strong>Product Name:</strong> {{name}}</p>
+            <p><strong>Description:</strong> {{description}}</p>
+            <p><strong>Price:</strong> RS {{price}}</p>
+            <p><strong>Category:</strong> {{category}}</p>
+            <p><strong>Stock:</strong> {{stock_quantity}}</p>
+            <p><strong>Color:</strong> {{color}}</p>
+
+            <!-- Button Container -->
+            <div class="button-container">
+              <form action="/product/addtocart/{{id}}" method="POST">
+                <button type="submit">Add To Cart</button>
+              </form>
+              <form action="/product/delete_product/{{id}}" method="POST">
+                <button type="submit" class="delete-button">Delete</button>
+              </form>
+            </div>
+          </div>
+        {{/each}}
+      </section>
+    </main>
+  </body>
+</html>

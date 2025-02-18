@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Cart Items</title>
+  </head>
+  <body>
+    <h1>Cart</h1>
+    {{#each cartItems}}
+      {{quantity}}
+      <p>Product:{{product.name}}</p>
+      <p>quantity:{{quantity}}</p>
+      <form action="/product/remove-items" {{_id}} method="GET">
+        <button type="submit">Remove</button>
+      </form>
+    {{/each}}
+    <h2>Total Sum :{{totalPrice}}</h2>
+  </body>
+</html>
