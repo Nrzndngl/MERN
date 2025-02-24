@@ -16,8 +16,6 @@ export default function NewState() {
       <br />
       <br />
       <button onClick={changeName}>Change Name</button> */}
-      <br />
-      <br />
       {counter} {increaseby}
       <br />
       <br />

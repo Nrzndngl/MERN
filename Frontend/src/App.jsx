@@ -1,3 +1,4 @@
+import Form from "./Components/Form";
 import Hello from "./Components/Hello";
 import NewState from "./Components/NewState";
 import Products from "./Components/Products";
@@ -7,7 +8,8 @@ function App() {
     <div className="App">
       {/* <Hello /> */}
       {/* <Products /> */}
-      <NewState />
+      {/* <NewState /> */}
+      <Form />
     </div>
   );
 }
